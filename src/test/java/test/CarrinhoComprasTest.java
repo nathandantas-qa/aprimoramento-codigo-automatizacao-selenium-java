@@ -73,8 +73,7 @@
 	
 		// 1. "Devo ser capaz de adicionar facilmente um item ao meu carrinho de compras
 		// a partir da página do produto."
-		@RepeatedTest(25)
-	//	@Test
+		@Test
 		public void adicionarItemNoCarrinho() throws Exception {
 			try {		
 				
@@ -116,8 +115,7 @@
 	
 		// 2. "Devo poder ajustar a quantidade de cada item diretamente no carrinho de
 		// compras."
-		@RepeatedTest(25)
-	//	@Test
+		@Test
 		public void editarQuantidadeDeItensNoCarrinho() {
 			try {
 				navegador.get("https://www.mercafe.com.br/colecoes-cafes/metodo/capsulas");
@@ -160,8 +158,7 @@
 	
 		// 3. "Devo ser capaz de remover um item específico do meu carrinho com
 		// facilidade.")
-		@RepeatedTest(25)
-	//	@Test
+		@Test
 		public void removerItemNoCarrinho() {
 			try {
 				navegador.get("https://www.mercafe.com.br/colecoes-cafes/metodo/capsulas");
@@ -201,8 +198,7 @@
 		}
 		// 4. "Devo ser capaz de avançar para o processo de checkout de forma
 		// intuitiva."
-		@RepeatedTest(25)
-	//	@Test
+		@Test
 		public void fazerCheckout() {
 			try {
 				navegador.get("https://www.mercafe.com.br/colecoes-cafes/metodo/capsulas");
