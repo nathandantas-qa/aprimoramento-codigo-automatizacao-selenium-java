@@ -1,289 +1,156 @@
-# Clean code
+# Projeto de automação de testes em Java
 
-O Clean Code é uma abordagem essencial no desenvolvimento de software, buscando tornar o código fonte compreensível, legível e de fácil manutenção. Este se utiliza alguns princípios do livro *Clean Code: A Handbook of Agile Software Craftsmanship* de Robert C. Martin para aprimorar partes do código e promover boas práticas de programação.
+* [Sobre o Projeto](#sobre-o-projeto)
+* [Arquitetura de Teste](#arquitetura-de-teste)
+  * [Linguagens e Estruturas](#linguagens-e-estruturas)
+  * [Pre-requisitos](#pre-requisitos)
+  * [Tipo de Execução](#tipo-de-execução)
+  * [Ambiente de Execução](#ambiente-de-execução)
+  * [Estrutura do Projeto](#estrutura-do-projeto)
+* [Atualizações](#atualizações)
+* [Execução](#execução)
+  * [Instruções](#instruções)
 
-## Portugues ou ingles?
+## Sobre o Projeto 
+Este projeto tem como objetivo fornecer orientações e passos para implantar uma checagens automatizadas.	
+> ℹ️ Não faz parte do objetivo fornecer orientações sobre o planejamento dos cenários de teste automatizados.
+Será abordado uma checagem automatizada end-to-end (E2E) para o gerenciamento do carrinho de compras em um sistema de comércio eletrônico. 
+O gerenciamento do carrinho de compras será testada no [Mercafé](https://www.mercafe.com.br/), escolhido após uma ação significativa e de grande afinidade realizada por profissionais de TI, especialmente aqueles que apreciam o hábito de desfrutar de uma boa xícara de café.
 
-A decisão entre escrever o código em português ou inglês é crucial para a clareza e consistência do código. Considere as seguintes orientações:
+A seguir, a História do Usuário fictícia que orientará os testes:
 
-1. **Diretrizes superiores ou padrões estabelecidos:** Siga as diretrizes existentes.
+>**User Story: Gerenciar Carrinho de Compras**
+>
+>**Como um** cliente do sistema de comércio eletrônico
+>
+>**Eu quero** poder gerenciar o meu carrinho de compras
+>
+>**Para que** eu possa revisar, editar, remover e concluir minha compra posteriormente.
+>
+>**Critérios de Aceitação**
+>1. *Devo ser capaz de adicionar facilmente um item ao meu carrinho de compras a partir da página do produto.*
+>2. *Devo poder ajustar a quantidade de cada item diretamente no carrinho de compras.*
+>3. *Devo ser capaz de remover um item específico do meu carrinho com facilidade.*
+>4. *Devo ser capaz de avançar para o processo de checkout de forma intuitiva.*
 
-2. **Decisão consensual pela equipe:** Discuta e alcance um consenso.
+## Arquitetura de teste
 
-3. **Aspirações globais de carreira:** O inglês é a linguagem universal para programadores.
+A arquitetura de teste deste projeto é baseada nas seguintes tecnologias e estruturas:
 
-4. **Decisão pessoal:** Escolha confortável e eficaz.
+### Linguagens e Estruturas
 
-Na internet existem várias postagens e discussões sobre este tema, para mais insights, consulte este [link](https://carlosschults.net/pt/programar-portugues-ou-ingles/)
+- **Java:** Linguagem de programação utilizada.
 
-## Nomes significativos 
+- **Selenium:** Estrutura de automação do navegador web.
 
-No Clean Code, escolher nomes claros e representativos é crucial para a legibilidade e manutenção do código.
+- **JUnit Jupiter:** Estrutura base para os testes.
 
-Aseguir, será abordado as alterações dos nomes realizada. 
+- **Maven:** Gerenciador de dependências, responsável pela gestão das versões do compilador Java e executor dos testes.
 
-### Nomes das Classes
-
-Ao nomear classes, use substantivos que representem claramente a entidade.
-
-|        Antes        |      Depois      | 
-|---------------------|------------------|
-| CarrinhoComprasTest | ShoppingCartTest |
-
-
-### Nomes dos Métodos
-
-Nomes de métodos devem conter verbos e prefixos de ação.
-
-| Antes                             | Depois                            | 
-|-----------------------------------|-----------------------------------|
-| conficuracaoDasTentativaUpp       | ~initializeRetryLimit~             |
-| setUp                             | setUpTestEnvironment              |
-| tearDown                          | tearDownTestEnvironment           |
-| exibirResultadoExcecoes           | ~displayExceptionResultsOnConsole~  |
-| adicionarItemNoCarrinho           | testAddItemToCart                 |
-| editarQuantidadeDeItensNoCarrinho | testEditCartItemQuantity          |
-| removerItemNoCarrinho             | testRemoveItemFromCart            |
-| fazerCheckout                     | testCheckout                      |
-	
-		
-### Variáveis
-Os nomoes devem revelar explicitamente o seu propósito, dando um contexto signinficativo. Importante que sejão pronunciaveis e passiveis de busca.
-
-*Variáveis de Classe*  
-| Antes                  | Depois                 |
-|------------------------|------------------------|
-| logger                 | logger                 |
-| contadorDeException    | ~exceptionCounter~       |
-| tentativasMaximas      | MAX_RETRIES            |
-| tentativasRestantes    | remainingRetries       |
-| navegador              | driver                 |
-| wait                   | wait                   |
+- **Log4j:*** Gerenciador de registros.
 
 
-*Variáveis Locais*
+### Pre-requisitos
+
+Antes de executar os testes automatizados neste projeto, certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
+
+- [Java 21](https://www.oracle.com/br/java/technologies/downloads/#java21)
+ 
+- [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+
+- [Google Chrome](https://support.google.com/chrome/answer/95346?hl=pt)
+
+### Tipo de Execução
+
+- Local.
+
+### Ambiente de Execução
+
+- Google Chrome
+
+### Estrutura do Projeto
+
+A estrutura do projeto é organizada de maneira lógica, refletindo uma divisão clara das diferentes partes do código e recursos. Abaixo está uma visão geral dos principais componentes:
+
+```css
+project-root
+│
+├── src
+│   ├── test
+│   │   ├── java
+│   │   │   ├── tests
+│   │   │   │   ├── ShoppingCartTest.java
+│   │   │   │   └── BaseTest.java
+│   │   │   ├── helpers
+│   │   │   │   ├── WebDriverHelper.java
+│   │   │   │   ├── WaitHelper.java
+│   │   │   │   └── ExceptionHandlingHelper.java
+│   │   ├── resources
+│   │   │   └── log4j2.properties
+├── logs
+│   ├── test_automation.log
+├── .gitignore
+├── LICENSE
+├── pom.xml
+└── README.md
+```
+
+**src:** Contém o código-fonte do projeto.  
+**test:** Diretório para testes.  
+**java:** Código-fonte dos testes.  
+**tests:** Pacote que contém classes de teste.  
+**ShoppingCartTest.java:** Classe de teste relacionada ao carrinho de compras.  
+**BaseTest.java:** Classe de teste base com configurações iniciais e métodos comuns.  
+**helpers:** Pacote com classes auxiliares para testes.  
+**WebDriverHelper.java:** Auxilia na configuração e interação com o WebDriver.  
+**WaitHelper.java:** Fornece métodos para esperar por elementos específicos antes de interagir com eles.  
+**ExceptionHandlingHelper.java:** Lida com exceções durante os testes, permitindo reteste e registrando detalhes.  
+**resources:** Recursos utilizados nos testes.  
+**log4j2.properties:** Configurações do Log4j2 para logar informações durante a execução dos testes.  
+**logs:** Diretório para armazenar logs do projeto.  
+**test_automation.log:** Arquivo de log contendo informações sobre a execução dos testes automatizados.  
+**gitignore:** Arquivo que especifica arquivos e pastas que devem ser ignorados pelo controle de versão Git.  
+**LICENSE:** Arquivo que contém os termos da licença do projeto.  
+**pom.xml:** Arquivo de configuração do Maven, utilizado para gerenciar as dependências e configurações do projeto.  
+**README.md:** Arquivo que fornece informações essenciais sobre o projeto, como sua descrição, instruções de instalação e uso, entre outros.  
+
+## Atualizações
+
+1. [feature/automacao-carrinho-compras](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/feature/automacao-carrinho-compras)
+   - Adiciona testes automatizados para o gerenciamento do carrinho de compras, incluindo adição, ajuste, remoção de itens e avanço para o processo de checkout.
+     
+2. [fix/flaky-tests](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/fix/flaky-tests)	
+   - Aprimora o registro de logs com o Log4j para facilitar a identificação de Flaky Tests.
+   - Reforça a estabilidade dos testes com a implementação de espera explícita.
+   - Aprimora a confiabilidade dos testes com a implementação de reteste.
   
-| Antes                           | Depois                                    |
-|---------------------------------|-------------------------------------------|
-| by_BotaoCompar                  | BUY_BUTTON_SELECTOR                       |
-| by_campoStore                   | STORE_INPUT_SELECTOR                      |
-| qtdeItem                        | itemQuantity                              |
-| resultado                       | result                                    |
-| expectativa                     | ~expected~                                |
-| botaoXPath                      | STORE_INPUT_SELECTOR                      |
-| botaoXPath                      | CARD_STORE_QUANTITY_RIGHT_BUTTON_SELECTOR |
-| botaoXPath                      | REMOVE_BUTTON_SELECTOR                    |
-| botaoXPath                      | CHECKOUT_BUTTON_SELECTOR                  |
-| qtdaItem_XPath                  | EMPTY_CART_MESSAGE_SELECTOR               |
-| quantidadeItem_texto            | itemQuantity                              |
-| quantidadeItem                  | ~itemQuantity~                            |
-| elementProduct                  | BUY_BUTTON_SELECTOR                       |
-| substringEsperada               | EXPECTED_URL_SUBSTRING                    |
-| contemSubstringEsperada         | ~CONTAINS_SUBSTRING~                      |
+3. [refactor/cleaner-code]](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
+   - Atualização de nomes de métodos e classes para seguir as boas práticas de Clean Code.
+   - Adição de classes auxiliares para lidar com exceções, espera e interação com o WebDriver.
+   - Modificação na estrutura de diretórios para organizar melhor os testes.
+   - Remoção de métodos obsoletos e redundantes.
 
+Para obter mais detalhes sobre cada atualização, você pode explorar os branches associados.
 
-## Funções
+## Execução
 
-Para melhorar a legibilidade e manutenibilidade do código é importante manter funções pequenas, com responsabilidade única e nomes descritivos.
+### Instruções 
+Para executar os testes automatizados, siga as etapas abaixo:
 
-
-### Classes
-
-
-#### 1. `ShoppingCartTest`
-
-Esta classe contém os testes end-to-end para interações com o carrinho de compras.
-
-#### Atributos
-
-- `PRODUCT_URL`: URL da página de produtos.
-- `EXPECTED_EMPTY_CART_MESSAGE`: Mensagem esperada quando o carrinho está vazio.
-- `EXPECTED_URL_SUBSTRING`: Substring esperada na URL durante o checkout.
-- `BUY_BUTTON_SELECTOR`: Seletor CSS do botão de compra.
-- `STORE_INPUT_SELECTOR`: Seletor CSS do campo de entrada de quantidade no carrinho.
-- `CARD_STORE_QUANTITY_RIGHT_BUTTON_SELECTOR`: Seletor CSS do botão de incremento de quantidade no carrinho.
-- `REMOVE_BUTTON_SELECTOR`: Seletor CSS do botão de remoção de item do carrinho.
-- `EMPTY_CART_MESSAGE_SELECTOR`: Seletor XPath da mensagem de carrinho vazio.
-- `CHECKOUT_BUTTON_SELECTOR`: Seletor CSS do botão de checkout.
-
-#### Métodos
-
-- `testAddItemToCart()`: Testa a adição de um item ao carrinho de compras.
-  - Navega até a página do produto.
-  - Clica no botão de compra.
-  - Verifica se a quantidade do item no carrinho é 1.
-
-- `retryTestAddItemToCart(exception)`: Trata exceções durante o teste `testAddItemToCart` e permite reteste.
-
-- `testEditCartItemQuantity()`: Testa a edição da quantidade de itens no carrinho.
-  - Navega até a página do produto.
-  - Clica no botão de compra.
-  - Clica no botão de incremento de quantidade no carrinho.
-  - Verifica se a quantidade do item no carrinho é 2.
-
-- `retryTestEditCartItemQuantity(exception)`: Trata exceções durante o teste `testEditCartItemQuantity` e permite reteste.
-
-- `testRemoveItemFromCart()`: Testa a remoção de um item do carrinho.
-  - Navega até a página do produto.
-  - Clica no botão de compra.
-  - Clica no botão de remoção do item do carrinho.
-  - Verifica se a mensagem de carrinho vazio é exibida.
-
-- `retrytestRemoveItemFromCart(exception)`: Trata exceções durante o teste `testRemoveItemFromCart` e permite reteste.
-
-- `testCheckout()`: Testa o processo de checkout.
-  - Navega até a página do produto.
-  - Clica no botão de compra.
-  - Clica no botão de checkout.
-  - Verifica se a URL contém a substring esperada.
-
-- `retryTestCheckout(exception)`: Trata exceções durante o teste `testCheckout` e permite reteste.
-
-- Métodos auxiliares privados (`clickBuyButton()`, `clickCardStoreQuantityRightButton()`, `clickRemoveButton()`, `clickCheckoutButton()`, `getItemQuantity()`, `getEmptyCartMessage()`, `navigateToUrlProduct()`): Simplificam a execução de ações específicas nos testes.
-
-
-#### 2. `BaseTest`
-
-Esta classe é uma classe base para os testes e contém configurações iniciais e métodos comuns.
-
-#### Atributos
-
-- `BASE_URL`: URL base do site [Mercafe](https://www.mercafe.com.br).
-- `driver`: Instância do WebDriver para interação com o navegador.
-- `webDriverHelper`: Instância do `WebDriverHelper` para auxiliar na interação com o WebDriver.
-- `exceptionHandlingHelper`: Instância do `ExceptionHandlingHelper` para tratar exceções durante os testes.
-
-#### Métodos
-
-- `setUpTestEnvironment()`: Configura o ambiente de teste antes de cada teste.
-  - Configura o WebDriver.
-  - Navega para a página inicial.
-  - Fecha o popup de anúncio.
+1. *Abra um console ou terminal:*
+   - No Windows, você pode pressionar `Win + R`, digitar `cmd` ou `powershell`, e pressionar Enter.
+   - No Linux ou macOS, você pode usar o terminal padrão do sistema.
   
-- `tearDownTestEnvironment()`: Limpa o ambiente de teste após cada teste.
-  - Fecha o WebDriver.
+2. *Navegue até o diretório do projeto:*
+```bash
+   cd caminho/do/seu/projeto
+```
 
-- `configureExceptionHandling()`: Configura o tratamento de exceções durante os testes.
+3. *Executar os testes:*
+```bash
+   mvn test
+```
 
-- `configureWebDriver()`: Configura o WebDriver, inicializando a instância e configurando o helper.
-
-- `navigateToHomePage()`: Navega para a página inicial do site.
-
-- `closeAnnouncementPopup()`: Fecha o popup de anúncio, se presente.
-
-- `closeWebDriver()`: Encerra a instância do WebDriver.
-
-- `handleExceptionWithRetryAndLog(exception, retryAction, testName)`: Lida com exceções durante os testes, permitindo reteste e registrando detalhes.
-  - `exception`: A exceção capturada.
-  - `retryAction`: A ação a ser reexecutada em caso de exceção.
-  - `testName`: Nome do teste em execução.
-
-- `resetTestEnvironment()`: Reinicializa o ambiente de teste.
-  - Fecha o WebDriver.
-  - Configura novamente o WebDriver.
-  - Navega para a página inicial.
-  - Fecha o popup de anúncio.
-
-- `isHandlingFailed()`: Verifica se o tratamento de exceção falhou.
-
-- `waitElementAndClick(locator)`: Aguarda um elemento ser clicável e o clica.
-  - `locator`: O seletor do elemento.
-
-- `waitElementAndGetValue(locator)`: Aguarda a visibilidade de um elemento e retorna o valor do atributo "value".
-  - `locator`: O seletor do elemento.
-
-- `waitElementAndGetText(locator)`: Aguarda a visibilidade de um elemento e retorna o texto contido nele.
-  - `locator`: O seletor do elemento.
-
-- `urlContains(urlSubstring)`: Verifica se a URL atual contém uma substring específica.
-  - `urlSubstring`: A substring a ser verificada na URL.
-
-#### 3. `WebDriverHelper`
-
-Esta classe auxilia na configuração e interação com o WebDriver.
-
-#### Atributos
-
-- `driver`: Instância do WebDriver associada a esta instância do `WebDriverHelper`.
-- `waitHelper`: Instância do `WaitHelper` para auxiliar nas operações de espera.
-
-#### Métodos
-
-- `configure()`: Configura o WebDriver.
-  - Maximiza a janela.
-  - Define o tempo de espera implícito.
-
-- `maximizeWindow()`: Maximiza a janela do navegador.
-
-- `setImplicitWait(duration)`: Define o tempo de espera implícito.
-  - `duration`: A duração do tempo de espera implícito.
-
-- `waitElementAndClick(locator)`: Aguarda um elemento ser clicável e o clica.
-  - `locator`: O seletor do elemento.
-
-- `waitElementAndGetValue(locator)`: Aguarda a visibilidade de um elemento e retorna o valor do atributo "value".
-  - `locator`: O seletor do elemento.
-
-- `waitElementAndGetText(locator)`: Aguarda a visibilidade de um elemento e retorna o texto contido nele.
-  - `locator`: O seletor do elemento.
-
-- `urlContains(urlSubstring)`: Verifica se a URL atual contém uma substring específica.
-  - `urlSubstring`: A substring a ser verificada na URL.
-
-
-#### 4. `WaitHelper`
-
-Esta classe fornece métodos para esperar por elementos específicos antes de interagir com eles.
-
-#### Atributos
-
-- `wait`: Instância da classe `WebDriverWait` associada a esta instância do `WaitHelper`.
-- `DEFAULT_TIMEOUT`: Tempo de espera padrão definido para aguardar a visibilidade de elementos.
-- `TIMES_TO_RETRY`: Número de tentativas de retentativa em caso de falha ao aguardar a visibilidade de elementos.
-- `WEB_ELEMENT_NOT_LOCATED_MESSAGE`: Mensagem de erro para exceção quando o elemento não é localizado após várias tentativas.
-
-#### Métodos
-
-- `urlContains(urlSubstring)`: Aguarda até que a URL atual contenha uma substring específica.
-  - `urlSubstring`: A substring a ser verificada na URL.
-
-- `waitElementToBeClickableWithShouldRetry(locator)`: Aguarda até que um elemento seja clicável, com retentativa em caso de falha.
-  - `locator`: O seletor do elemento.
-
-- `waitVisibilityOfElementLocated(locator)`: Aguarda até que um elemento seja visível, com retentativa em caso de falha.
-  - `locator`: O seletor do elemento.
-
-- `retryLogic(action, locator)`: Lógica de retentativa para operações com elementos.
-  - `action`: A ação a ser executada.
-  - `locator`: O seletor do elemento.
-
-#### 5. `ExceptionHandlingHelper`
-
-Esta classe lida com exceções durante os testes, permitindo reteste e registrando detalhes.
-
-#### Atributos
-
-- `MAX_RETRIES`: Número máximo de retentativas permitidas.
-- `remainingRetries`: Número de retentativas restantes.
-- `handlingFailed`: Indicador de falha no tratamento.
-
-#### Métodos
-
-- `handleRetryAndLog(exception, retryAction, testName)`: Trata uma exceção durante a execução de um teste, permite uma retentativa e registra informações sobre a exceção.
-  - `exception`: A exceção ocorrida durante o teste.
-  - `retryAction`: A ação a ser retentada em caso de falha.
-  - `testName`: Nome do teste em execução.
-
-- `isHandlingFailed()`: Verifica se o tratamento falhou.
-
-- `isHandling()`: Verifica se ainda é possível realizar retentativas.
-
-- `registerAttempts(exception, testName)`: Registra as tentativas de retentativa e loga as informações.
-  - `exception`: A exceção ocorrida durante o teste.
-  - `testName`: Nome do teste em execução.
-
-- `registerAttemptsExhausted(exception, testName)`: Registra a falha no tratamento após esgotar as retentativas.
-  - `exception`: A exceção ocorrida durante o teste.
-  - `testName`: Nome do teste em execução.
-
-
+> :warning: **Observações**
+> Se estiver utilizando uma IDE, como o IntelliJ ou Eclipse, você também pode executar os testes diretamente na IDE.  
+> Certifique-se de que a configuração do ambiente e as dependências estejam configuradas corretamente na IDE.
