@@ -70,7 +70,7 @@ Antes de executar os testes automatizados neste projeto, certifique-se de ter as
 
 ### Estrutura do Projeto
 
-A estrutura do projeto é organizada de maneira lógica, refletindo uma divisão clara das diferentes partes do código e recursos. Abaixo está uma visão geral dos principais componentes:
+Abaixo está uma visão geral dos principais componentes:
 
 ```css
 project-root
