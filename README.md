@@ -10,7 +10,6 @@
 * [Atualizações](#atualizações)
 * [Execução](#execução)
   * [Instruções](#instruções)
-  * [Resultados dos Testes](#resultados-dos-testes)
 
 ## Sobre o Projeto 
 Este projeto tem como objetivo fornecer orientações e passos para implantar uma checagens automatizadas.	
@@ -71,7 +70,49 @@ Antes de executar os testes automatizados neste projeto, certifique-se de ter as
 
 ### Estrutura do Projeto
 
-A arquitetura inicial é simplória, sem padrão de projeto ou boas práticas de codificação.
+Abaixo está uma visão geral dos principais componentes:
+
+```css
+project-root
+│
+├── src
+│   ├── test
+│   │   ├── java
+│   │   │   ├── tests
+│   │   │   │   ├── ShoppingCartTest.java
+│   │   │   │   └── BaseTest.java
+│   │   │   ├── helpers
+│   │   │   │   ├── WebDriverHelper.java
+│   │   │   │   ├── WaitHelper.java
+│   │   │   │   └── ExceptionHandlingHelper.java
+│   │   ├── resources
+│   │   │   └── log4j2.properties
+├── logs
+│   ├── test_automation.log
+├── .gitignore
+├── LICENSE
+├── pom.xml
+└── README.md
+```
+
+**src:** Contém o código-fonte do projeto.  
+**test:** Diretório para testes.  
+**java:** Código-fonte dos testes.  
+**tests:** Pacote que contém classes de teste.  
+**ShoppingCartTest.java:** Classe de teste relacionada ao carrinho de compras.  
+**BaseTest.java:** Classe de teste base com configurações iniciais e métodos comuns.  
+**helpers:** Pacote com classes auxiliares para testes.  
+**WebDriverHelper.java:** Auxilia na configuração e interação com o WebDriver.  
+**WaitHelper.java:** Fornece métodos para esperar por elementos específicos antes de interagir com eles.  
+**ExceptionHandlingHelper.java:** Lida com exceções durante os testes, permitindo reteste e registrando detalhes.  
+**resources:** Recursos utilizados nos testes.  
+**log4j2.properties:** Configurações do Log4j2 para logar informações durante a execução dos testes.  
+**logs:** Diretório para armazenar logs do projeto.  
+**test_automation.log:** Arquivo de log contendo informações sobre a execução dos testes automatizados.  
+**gitignore:** Arquivo que especifica arquivos e pastas que devem ser ignorados pelo controle de versão Git.  
+**LICENSE:** Arquivo que contém os termos da licença do projeto.  
+**pom.xml:** Arquivo de configuração do Maven, utilizado para gerenciar as dependências e configurações do projeto.  
+**README.md:** Arquivo que fornece informações essenciais sobre o projeto, como sua descrição, instruções de instalação e uso, entre outros.  
 
 ## Atualizações
 
@@ -82,6 +123,12 @@ A arquitetura inicial é simplória, sem padrão de projeto ou boas práticas de
    - Aprimora o registro de logs com o Log4j para facilitar a identificação de Flaky Tests.
    - Reforça a estabilidade dos testes com a implementação de espera explícita.
    - Aprimora a confiabilidade dos testes com a implementação de reteste.
+  
+3. [refactor/cleaner-code]](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
+   - Atualização de nomes de métodos e classes para seguir as boas práticas de Clean Code.
+   - Adição de classes auxiliares para lidar com exceções, espera e interação com o WebDriver.
+   - Modificação na estrutura de diretórios para organizar melhor os testes.
+   - Remoção de métodos obsoletos e redundantes.
 
 Para obter mais detalhes sobre cada atualização, você pode explorar os branches associados.
 
@@ -107,14 +154,3 @@ Para executar os testes automatizados, siga as etapas abaixo:
 > :warning: **Observações**
 > Se estiver utilizando uma IDE, como o IntelliJ ou Eclipse, você também pode executar os testes diretamente na IDE.  
 > Certifique-se de que a configuração do ambiente e as dependências estejam configuradas corretamente na IDE.
-
-### Resultados dos Testes
-
-Durante 100 execuções dos testes automatizados, foram observadas 24 ocorrências de exceções, incluindo 23 do tipo StaleElementReferenceException e 1 do tipo TimeoutException. No entanto, graças à estratégia de reteste implementada, todas as ocorrências foram tratadas com sucesso. O uso de espera explícita (WebDriverWait) e a reintrodução dos testes em caso de falha contribuíram significativamente para a estabilidade e confiabilidade do conjunto de testes.
-
-![Exception](/assets/Run_4.jpg)
-
-```text
-[INFO ] 2023-12-06 17:40:28.989 [main] CarrinhoComprasTest - lambda$1 - StaleElementReferenceException: 23 ocorrência(s)
-[INFO ] 2023-12-06 17:40:28.989 [main] CarrinhoComprasTest - lambda$1 - TimeoutException: 1 ocorrência(s)
-```
