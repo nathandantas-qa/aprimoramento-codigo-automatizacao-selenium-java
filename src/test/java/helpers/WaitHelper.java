@@ -24,16 +24,22 @@ public class WaitHelper {
 
 	
 	private WebDriverWait wait;
-
+	private WebDriver driver;
 
 	public WaitHelper(WebDriver driver) {
 		super();
+		this.driver = driver;
 		this.wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
 	}
 	
 
 	public boolean urlContains(String urlSubstring) {
-		return wait.until(ExpectedConditions.urlContains(urlSubstring));
+		try {
+			return wait.until(ExpectedConditions.urlContains(urlSubstring));
+		}catch (Exception e) {
+			logger.info(format("Current URL: %s\tContains: %s", driver.getCurrentUrl(), urlSubstring ));
+		}
+		return false; 
 	}
 
 	private <T> T retryLogic(Supplier<T> action, By locator) {
