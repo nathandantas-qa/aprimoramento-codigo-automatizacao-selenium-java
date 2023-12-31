@@ -4,7 +4,7 @@ O padrão [Page Object](https://martinfowler.com/bliki/PageObject.html) é uma a
 
 ## Estrutura do Projeto
 
-A estrutura do projeto é organizada da seguinte maneira:1
+A estrutura do projeto é organizada da seguinte maneira:
 
 ```plaintext
 project-root
