@@ -131,7 +131,7 @@ project-root
    - Reforça a estabilidade dos testes com a implementação de espera explícita.
    - Aprimora a confiabilidade dos testes com a implementação de reteste.
   
-3. [refactor/cleaner-code]](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
+3. [refactor/cleaner-code](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
    - Atualização de nomes de métodos e classes para seguir as boas práticas de Clean Code.
    - Adição de classes auxiliares para lidar com exceções, espera e interação com o WebDriver.
    - Modificação na estrutura de diretórios para organizar melhor os testes.
