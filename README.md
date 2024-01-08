@@ -9,7 +9,6 @@
   * [Estrutura do Projeto](#estrutura-do-projeto)
 * [Atualizações](#atualizações)
 * [Execução](#execução)
-  * [Instruções](#instruções)
 
 ## Sobre o Projeto 
 Este projeto tem como objetivo fornecer orientações e passos para implantar uma checagens automatizadas.	
@@ -70,14 +69,18 @@ Antes de executar os testes automatizados neste projeto, certifique-se de ter as
 
 ### Estrutura do Projeto
 
-Abaixo está uma visão geral dos principais componentes:
+A estrutura do projeto segue o padrão Maven para testes, com os casos de teste localizados no diretório src/test/java, utilizando a abordagem Page Object.
 
-```css
+```plaintext
 project-root
 │
 ├── src
 │   ├── test
 │   │   ├── java
+│   │   │   ├── page
+│   │   │   │   ├── BasePage.java
+│   │   │   │   ├── CapsulesPage.java
+│   │   │   │   ├── CheckoutPage.java 
 │   │   │   ├── tests
 │   │   │   │   ├── ShoppingCartTest.java
 │   │   │   │   └── BaseTest.java
@@ -98,6 +101,10 @@ project-root
 **src:** Contém o código-fonte do projeto.  
 **test:** Diretório para testes.  
 **java:** Código-fonte dos testes.  
+**page:** Pacote que contém as classes relacionadas às páginas do aplicativo  
+**BasePage.java:** Classe base para as páginas, contendo o WebDriver e métodos comuns compartilhados entre as páginas.  
+**CapsulesPage.java:** Classe que mapeia e manipula os elementos da página Capsules.  
+**CheckoutPage.java:** Classe que mapeia e manipula os elementos da página Checkout.  
 **tests:** Pacote que contém classes de teste.  
 **ShoppingCartTest.java:** Classe de teste relacionada ao carrinho de compras.  
 **BaseTest.java:** Classe de teste base com configurações iniciais e métodos comuns.  
@@ -124,17 +131,21 @@ project-root
    - Reforça a estabilidade dos testes com a implementação de espera explícita.
    - Aprimora a confiabilidade dos testes com a implementação de reteste.
   
-3. [refactor/cleaner-code]](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
+3. [refactor/cleaner-code](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/cleaner-code)
    - Atualização de nomes de métodos e classes para seguir as boas práticas de Clean Code.
    - Adição de classes auxiliares para lidar com exceções, espera e interação com o WebDriver.
    - Modificação na estrutura de diretórios para organizar melhor os testes.
    - Remoção de métodos obsoletos e redundantes.
 
+4. [refactor/page-object](https://github.com/nathandantas-qa/aprimoramento-codigo-automatizacao-selenium-java/tree/refactor/page-object)
+   - Refatoração da abordagem Page Object no projeto.
+   - Criação de classes de página adicionais para encapsular lógicas específicas.
+   - Melhoria na modularidade e legibilidade do código ao seguir as práticas do Page Object.
+     
 Para obter mais detalhes sobre cada atualização, você pode explorar os branches associados.
 
 ## Execução
 
-### Instruções 
 Para executar os testes automatizados, siga as etapas abaixo:
 
 1. *Abra um console ou terminal:*
