@@ -100,11 +100,11 @@ project-root
 
 **src:** Contém o código-fonte do projeto.  
 **test:** Diretório para testes.  
-**java:** Código-fonte dos testes.
-**page:** Pacote que contém as classes relacionadas às páginas do aplicativo
-**BasePage.java:** Classe base para as páginas, contendo o WebDriver e métodos comuns compartilhados entre as páginas.
-**CapsulesPage.java:** Classe que mapeia e manipula os elementos da página Capsules.
-**CheckoutPage.java:** Classe que mapeia e manipula os elementos da página Checkout.
+**java:** Código-fonte dos testes.  
+**page:** Pacote que contém as classes relacionadas às páginas do aplicativo  
+**BasePage.java:** Classe base para as páginas, contendo o WebDriver e métodos comuns compartilhados entre as páginas.  
+**CapsulesPage.java:** Classe que mapeia e manipula os elementos da página Capsules.  
+**CheckoutPage.java:** Classe que mapeia e manipula os elementos da página Checkout.  
 **tests:** Pacote que contém classes de teste.  
 **ShoppingCartTest.java:** Classe de teste relacionada ao carrinho de compras.  
 **BaseTest.java:** Classe de teste base com configurações iniciais e métodos comuns.  
